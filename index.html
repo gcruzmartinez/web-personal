@@ -2101,7 +2101,7 @@
         <div class="contact-card">
           <h3>Escríbenos</h3>
           <p class="text-muted">Cuéntanos brevemente tu interés y te respondemos en pocos días.</p>
-          <form action="mailto:podes@ucm.es" method="post" enctype="text/plain">
+          <form id="contactForm" onsubmit="enviarContacto(event)">
             <div class="field"><label for="cf-name">Nombre</label><input id="cf-name" name="nombre" type="text" required></div>
             <div class="field"><label for="cf-email">Email</label><input id="cf-email" name="email" type="email" required></div>
             <div class="field"><label for="cf-msg">Mensaje</label><textarea id="cf-msg" name="mensaje" required placeholder="¿En qué te podemos ayudar? (estancia, tesis, colaboración, prensa…)"></textarea></div>
@@ -2265,6 +2265,17 @@
     window.addEventListener('load', adjustPopupPositions);
     window.addEventListener('resize', adjustPopupPositions);
     document.addEventListener('scroll', adjustPopupPositions);
+  
+    function enviarContacto(e) {
+      e.preventDefault();
+      const f = e.target;
+      const nombre = encodeURIComponent(f.nombre.value);
+      const email = encodeURIComponent(f.email.value);
+      const mensaje = encodeURIComponent(f.mensaje.value);
+      const subject = encodeURIComponent('Contacto desde web PoDéS — ' + f.nombre.value);
+      const body = `De: ${decodeURIComponent(nombre)} <${decodeURIComponent(email)}>\n\n${decodeURIComponent(mensaje)}`;
+      window.location.href = `mailto:podes@ucm.es?subject=${subject}&body=${encodeURIComponent(body)}`;
+    }
   </script>
 </body>
 </html>
