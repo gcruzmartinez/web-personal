@@ -1,0 +1,1201 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gibrán Cruz-Martínez | Academic Website</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <style>
+    /* ─── RESET & BASE ──────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy:      #0f2140;
+      --navy-mid:  #1a3461;
+      --accent:    #2e7db3;
+      --gold:      #c4922a;
+      --gold-lt:   #f0c56a;
+      --bg:        #f8f9fc;
+      --bg-alt:    #ffffff;
+      --text:      #1e2d3d;
+      --text-lt:   #4a5568;
+      --text-xlt:  #718096;
+      --border:    #e2e8f0;
+      --shadow:    0 4px 24px rgba(15,33,64,0.08);
+      --shadow-lg: 0 12px 40px rgba(15,33,64,0.14);
+      --radius:    10px;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      font-size: 16px;
+    }
+    h1,h2,h3,h4 { font-family: 'Playfair Display', serif; line-height: 1.25; }
+    a { color: var(--accent); text-decoration: none; transition: color .2s; }
+    a:hover { color: var(--gold); }
+    img { max-width: 100%; }
+
+    /* ─── NAV ───────────────────────────────────────── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      background: var(--navy);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 2.5rem;
+      height: 64px;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.25);
+    }
+    .nav-brand {
+      font-family: 'Playfair Display', serif;
+      color: #fff;
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      white-space: nowrap;
+    }
+    .nav-brand span { color: var(--gold-lt); }
+    .nav-links {
+      display: flex; gap: 0.2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      color: rgba(255,255,255,0.75);
+      font-size: 0.82rem;
+      font-weight: 500;
+      padding: 0.45rem 0.75rem;
+      border-radius: 6px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      transition: all .2s;
+    }
+    .nav-links a:hover { color: #fff; background: rgba(255,255,255,0.1); }
+    .nav-links a.active { color: var(--gold-lt); }
+    .nav-toggle {
+      display: none;
+      background: none; border: none;
+      color: #fff; font-size: 1.4rem; cursor: pointer;
+    }
+
+    /* ─── HERO ──────────────────────────────────────── */
+    #home {
+      min-height: 100vh;
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 60%, #1e4a7a 100%);
+      display: flex; align-items: center;
+      padding: 100px 2rem 4rem;
+      position: relative; overflow: hidden;
+    }
+    #home::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.025'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+    .hero-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr auto;
+      gap: 3rem; align-items: center;
+      width: 100%;
+    }
+    .hero-text { position: relative; z-index: 1; }
+    .hero-pre {
+      font-size: 0.85rem; font-weight: 500;
+      color: var(--gold-lt); letter-spacing: 0.15em;
+      text-transform: uppercase; margin-bottom: 1rem;
+    }
+    .hero-name {
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      color: #ffffff; line-height: 1.1;
+      margin-bottom: 0.75rem;
+    }
+    .hero-title {
+      font-family: 'Inter', sans-serif;
+      font-size: 1.05rem; font-weight: 400;
+      color: rgba(255,255,255,0.75);
+      margin-bottom: 0.4rem;
+    }
+    .hero-inst {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem; font-weight: 400;
+      color: rgba(255,255,255,0.55);
+      margin-bottom: 1.8rem;
+    }
+    .hero-bio {
+      font-size: 1rem;
+      color: rgba(255,255,255,0.78);
+      max-width: 620px;
+      line-height: 1.75;
+      margin-bottom: 2rem;
+    }
+    .profile-links {
+      display: flex; flex-wrap: wrap; gap: 0.6rem;
+    }
+    .profile-link {
+      display: inline-flex; align-items: center; gap: 0.45rem;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      color: rgba(255,255,255,0.85) !important;
+      padding: 0.5rem 1rem;
+      border-radius: 40px;
+      font-size: 0.82rem; font-weight: 500;
+      transition: all .25s;
+    }
+    .profile-link:hover {
+      background: var(--gold);
+      border-color: var(--gold);
+      color: #fff !important;
+      transform: translateY(-2px);
+    }
+    .profile-link i { font-size: 0.9rem; }
+    .hero-stats {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 1rem; z-index: 1; position: relative;
+    }
+    .stat-card {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: var(--radius);
+      padding: 1.25rem 1.5rem;
+      text-align: center;
+      backdrop-filter: blur(10px);
+      transition: background .2s;
+    }
+    .stat-card:hover { background: rgba(255,255,255,0.12); }
+    .stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem; font-weight: 700;
+      color: var(--gold-lt);
+      display: block;
+    }
+    .stat-label {
+      font-size: 0.78rem; color: rgba(255,255,255,0.6);
+      letter-spacing: 0.05em; text-transform: uppercase;
+    }
+
+    /* ─── SECTION WRAPPER ───────────────────────────── */
+    section { padding: 5rem 2rem; }
+    section:nth-child(even) { background: var(--bg-alt); }
+    .section-inner { max-width: 1100px; margin: 0 auto; }
+    .section-header { margin-bottom: 3rem; }
+    .section-tag {
+      font-size: 0.78rem; font-weight: 600;
+      color: var(--accent); letter-spacing: 0.15em;
+      text-transform: uppercase; margin-bottom: 0.5rem;
+      display: flex; align-items: center; gap: 0.5rem;
+    }
+    .section-tag::after {
+      content: ''; flex: 1; max-width: 3rem;
+      height: 2px; background: var(--accent);
+    }
+    .section-title {
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      color: var(--navy);
+    }
+
+    /* ─── ABOUT ─────────────────────────────────────── */
+    #about { background: var(--bg-alt); }
+    .about-grid {
+      display: grid; grid-template-columns: 1fr 300px;
+      gap: 4rem; align-items: start;
+    }
+    .about-text p { margin-bottom: 1.1rem; color: var(--text-lt); line-height: 1.8; }
+    .about-text p:first-child { font-size: 1.05rem; }
+    .research-tags {
+      display: flex; flex-wrap: wrap; gap: 0.5rem;
+      margin-top: 1.5rem;
+    }
+    .tag {
+      background: #e8f0fb; color: var(--accent);
+      border-radius: 20px; padding: 0.3rem 0.85rem;
+      font-size: 0.82rem; font-weight: 500;
+    }
+    .info-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.75rem;
+    }
+    .info-card h4 {
+      font-size: 0.9rem; text-transform: uppercase;
+      letter-spacing: 0.08em; color: var(--text-xlt);
+      margin-bottom: 1.25rem;
+    }
+    .info-item {
+      display: flex; align-items: flex-start; gap: 0.75rem;
+      margin-bottom: 1rem; font-size: 0.9rem;
+    }
+    .info-item i {
+      color: var(--accent); margin-top: 0.2rem;
+      width: 16px; text-align: center; flex-shrink: 0;
+    }
+    .info-item span { color: var(--text-lt); }
+    .acred-badge {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      background: #f0f7ff;
+      border: 1px solid #c3daf8;
+      border-radius: 6px;
+      padding: 0.35rem 0.65rem;
+      font-size: 0.78rem; color: var(--accent);
+      margin-top: 0.25rem; font-weight: 500;
+    }
+
+    /* ─── PROJECTS ──────────────────────────────────── */
+    #projects { background: var(--bg); }
+    .projects-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.5rem;
+    }
+    .project-card {
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.75rem;
+      transition: all .25s;
+      position: relative;
+    }
+    .project-card:hover {
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-3px);
+      border-color: var(--accent);
+    }
+    .project-years {
+      font-size: 0.78rem; font-weight: 600;
+      color: var(--accent); letter-spacing: 0.05em;
+      margin-bottom: 0.5rem;
+    }
+    .project-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem; color: var(--navy);
+      margin-bottom: 0.75rem; line-height: 1.4;
+    }
+    .project-meta {
+      font-size: 0.82rem; color: var(--text-xlt);
+      margin-bottom: 0.35rem;
+    }
+    .project-role {
+      display: inline-block;
+      background: #e8f0fb; color: var(--accent);
+      border-radius: 4px; padding: 0.2rem 0.5rem;
+      font-size: 0.75rem; font-weight: 600;
+      margin-top: 0.5rem;
+    }
+    .project-role.ip { background: #fef3dc; color: var(--gold); }
+    .project-funding {
+      position: absolute; top: 1.25rem; right: 1.25rem;
+      font-size: 0.72rem; font-weight: 600;
+      color: var(--text-xlt);
+    }
+
+    /* ─── PUBLICATIONS ──────────────────────────────── */
+    #publications { background: var(--bg-alt); }
+    .pub-tabs {
+      display: flex; gap: 0.5rem; margin-bottom: 2.5rem;
+      border-bottom: 2px solid var(--border);
+      overflow-x: auto;
+    }
+    .pub-tab {
+      background: none; border: none; cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.88rem; font-weight: 500;
+      color: var(--text-xlt);
+      padding: 0.75rem 1.25rem;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -2px;
+      transition: all .2s; white-space: nowrap;
+    }
+    .pub-tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+    .pub-tab:hover { color: var(--text); }
+    .pub-panel { display: none; }
+    .pub-panel.active { display: block; }
+    .pub-item {
+      border-left: 3px solid var(--border);
+      padding: 1.1rem 1.25rem;
+      margin-bottom: 1.25rem;
+      transition: border-color .2s;
+    }
+    .pub-item:hover { border-color: var(--accent); }
+    .pub-num {
+      font-size: 0.75rem; font-weight: 600;
+      color: var(--text-xlt); margin-bottom: 0.3rem;
+    }
+    .pub-ref {
+      font-size: 0.92rem; color: var(--text-lt);
+      line-height: 1.65;
+    }
+    .pub-ref strong { color: var(--navy); font-weight: 600; }
+    .pub-journal {
+      font-size: 0.8rem; color: var(--accent);
+      margin-top: 0.3rem; font-style: italic;
+    }
+    .pub-book-badge {
+      display: inline-block;
+      background: #fef3dc; color: var(--gold);
+      border-radius: 4px; padding: 0.15rem 0.5rem;
+      font-size: 0.73rem; font-weight: 600; margin-left: 0.5rem;
+    }
+
+    /* ─── SUPERVISION ───────────────────────────────── */
+    #supervision { background: var(--bg); }
+    .supervision-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 2rem; margin-bottom: 3rem;
+    }
+    .supervision-stat {
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2rem;
+      text-align: center;
+    }
+    .supervision-stat .num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.8rem; font-weight: 700;
+      color: var(--navy); display: block;
+    }
+    .supervision-stat .lbl {
+      font-size: 0.88rem; color: var(--text-xlt);
+      margin-top: 0.25rem;
+    }
+    .award-card {
+      background: linear-gradient(135deg, #1a3461, #0f2140);
+      border-radius: var(--radius);
+      padding: 2.25rem;
+      color: #fff;
+      position: relative; overflow: hidden;
+    }
+    .award-card::before {
+      content: '\f091';
+      font-family: 'Font Awesome 6 Free'; font-weight: 900;
+      position: absolute; right: 1.5rem; top: 1.5rem;
+      font-size: 3.5rem; color: rgba(196,146,42,0.2);
+    }
+    .award-label {
+      font-size: 0.78rem; font-weight: 600;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--gold-lt); margin-bottom: 0.75rem;
+    }
+    .award-title {
+      font-size: 1.15rem;
+      color: #fff; margin-bottom: 0.5rem; line-height: 1.4;
+    }
+    .award-desc {
+      font-size: 0.9rem; color: rgba(255,255,255,0.7);
+      line-height: 1.65;
+    }
+    .award-desc strong { color: rgba(255,255,255,0.9); }
+    .supervision-info {
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2rem;
+      margin-top: 2rem;
+    }
+    .supervision-info h3 {
+      font-size: 1.1rem; color: var(--navy);
+      margin-bottom: 1rem;
+    }
+    .supervision-info p { color: var(--text-lt); font-size: 0.93rem; line-height: 1.75; }
+    .research-interests {
+      margin-top: 1.25rem;
+      display: flex; flex-wrap: wrap; gap: 0.5rem;
+    }
+
+    /* ─── TEACHING ──────────────────────────────────── */
+    #teaching { background: var(--bg-alt); }
+    .teaching-list { display: flex; flex-direction: column; gap: 0; }
+    .teaching-item {
+      display: grid; grid-template-columns: 120px 1fr;
+      gap: 1.25rem; align-items: baseline;
+      padding: 0.95rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .teaching-item:last-child { border-bottom: none; }
+    .teaching-year {
+      font-size: 0.82rem; font-weight: 600;
+      color: var(--accent);
+    }
+    .teaching-course {
+      font-size: 0.92rem; color: var(--text-lt);
+    }
+    .teaching-course em { font-style: normal; color: var(--navy); font-weight: 500; }
+
+    /* ─── TALKS ─────────────────────────────────────── */
+    #talks { background: var(--bg); }
+    .talks-list { display: flex; flex-direction: column; gap: 1.25rem; }
+    .talk-item {
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.25rem 1.5rem;
+      display: grid; grid-template-columns: 70px 1fr;
+      gap: 1rem; align-items: start;
+      transition: all .2s;
+    }
+    .talk-item:hover { border-color: var(--accent); box-shadow: var(--shadow); }
+    .talk-year {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem; font-weight: 700;
+      color: var(--accent); padding-top: 0.1rem;
+    }
+    .talk-title {
+      font-size: 0.92rem; color: var(--navy);
+      font-weight: 500; margin-bottom: 0.3rem;
+      line-height: 1.4;
+    }
+    .talk-venue {
+      font-size: 0.82rem; color: var(--text-xlt);
+    }
+
+    /* ─── CONTACT ───────────────────────────────────── */
+    #contact {
+      background: var(--navy);
+      color: #fff;
+    }
+    #contact .section-tag { color: var(--gold-lt); }
+    #contact .section-tag::after { background: var(--gold-lt); }
+    #contact .section-title { color: #fff; }
+    .contact-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 3rem; align-items: start;
+    }
+    .contact-text {
+      font-size: 1rem; color: rgba(255,255,255,0.7);
+      line-height: 1.8;
+    }
+    .contact-text a { color: var(--gold-lt); }
+    .contact-links {
+      display: flex; flex-direction: column; gap: 1rem;
+    }
+    .contact-link {
+      display: flex; align-items: center; gap: 1rem;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: var(--radius);
+      padding: 1rem 1.25rem;
+      color: rgba(255,255,255,0.85) !important;
+      transition: all .25s;
+    }
+    .contact-link:hover {
+      background: rgba(255,255,255,0.13);
+      border-color: var(--gold-lt);
+      color: #fff !important;
+      transform: translateX(4px);
+    }
+    .contact-link i {
+      width: 22px; text-align: center;
+      font-size: 1.05rem; color: var(--gold-lt);
+    }
+    .contact-link-text { font-size: 0.9rem; }
+    .contact-link-label { font-size: 0.72rem; color: rgba(255,255,255,0.45); }
+
+    /* ─── FOOTER ────────────────────────────────────── */
+    footer {
+      background: #070f1c;
+      color: rgba(255,255,255,0.4);
+      text-align: center;
+      padding: 1.75rem;
+      font-size: 0.82rem;
+    }
+    footer a { color: rgba(255,255,255,0.55); }
+    footer a:hover { color: var(--gold-lt); }
+
+    /* ─── RESPONSIVE ────────────────────────────────── */
+    @media (max-width: 900px) {
+      .hero-inner { grid-template-columns: 1fr; }
+      .hero-stats { grid-template-columns: repeat(2, 1fr); }
+      .about-grid { grid-template-columns: 1fr; }
+      .supervision-grid { grid-template-columns: 1fr 1fr; }
+      .contact-grid { grid-template-columns: 1fr; }
+      nav { padding: 0 1.25rem; }
+      .nav-links { display: none; flex-direction: column; position: fixed;
+        top: 64px; left: 0; right: 0;
+        background: var(--navy);
+        padding: 1rem; gap: 0; }
+      .nav-links.open { display: flex; }
+      .nav-links a { padding: 0.75rem 1rem; }
+      .nav-toggle { display: block; }
+    }
+    @media (max-width: 600px) {
+      section { padding: 3.5rem 1.25rem; }
+      .hero-stats { grid-template-columns: 1fr 1fr; }
+      .supervision-grid { grid-template-columns: 1fr; }
+      .teaching-item { grid-template-columns: 1fr; gap: 0.25rem; }
+      .talk-item { grid-template-columns: 1fr; }
+      .projects-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ─── UTILITIES ─────────────────────────────────── */
+    .show-more-btn {
+      display: block; margin: 2rem auto 0;
+      background: none;
+      border: 2px solid var(--accent);
+      color: var(--accent);
+      padding: 0.65rem 1.75rem;
+      border-radius: 40px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.88rem; font-weight: 500;
+      cursor: pointer; transition: all .25s;
+    }
+    .show-more-btn:hover { background: var(--accent); color: #fff; }
+    .hidden { display: none !important; }
+  </style>
+</head>
+
+<body>
+
+<!-- ══════════════════ NAV ══════════════════ -->
+<nav>
+  <span class="nav-brand">Gibrán <span>Cruz-Martínez</span></span>
+  <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menu">
+    <i class="fas fa-bars"></i>
+  </button>
+  <ul class="nav-links">
+    <li><a href="#home">Inicio</a></li>
+    <li><a href="#about">Sobre mí</a></li>
+    <li><a href="#projects">Proyectos</a></li>
+    <li><a href="#publications">Publicaciones</a></li>
+    <li><a href="#supervision">Supervisión</a></li>
+    <li><a href="#teaching">Docencia</a></li>
+    <li><a href="#talks">Conferencias</a></li>
+    <li><a href="#contact">Contacto</a></li>
+  </ul>
+</nav>
+
+
+<!-- ══════════════════ HERO ══════════════════ -->
+<section id="home">
+  <div class="hero-inner">
+    <div class="hero-text">
+      <p class="hero-pre">Profesor · Investigador · Politólogo</p>
+      <h1 class="hero-name">Gibrán<br>Cruz-Martínez</h1>
+      <p class="hero-title">Profesor Ayudante Doctor</p>
+      <p class="hero-inst">Departamento de Ciencias Políticas y de la Administración &mdash; Universidad Complutense de Madrid</p>
+      <p class="hero-bio">
+        Especializado en política social comparada, gobernanza multinivel y el desarrollo del Estado de bienestar en España, América Latina y el Caribe. Más de 680 citas en Google Scholar, 42 artículos en revistas académicas, 3 libros y 16 proyectos de investigación financiados con una dotación total superior a 6,5 millones de euros.
+      </p>
+      <div class="profile-links">
+        <a class="profile-link" href="https://scholar.google.es/citations?user=your-id" target="_blank"><i class="fab fa-google"></i> Google Scholar</a>
+        <a class="profile-link" href="https://www.researchgate.net/profile/Gibran-Cruz-Martinez" target="_blank"><i class="fab fa-researchgate"></i> ResearchGate</a>
+        <a class="profile-link" href="https://orcid.org/0000-0002-4583-2914" target="_blank"><i class="fab fa-orcid"></i> ORCID</a>
+        <a class="profile-link" href="https://www.webofscience.com" target="_blank"><i class="fas fa-flask"></i> Web of Science</a>
+        <a class="profile-link" href="https://www.linkedin.com/in/gibran-cruz-martinez/" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+        <a class="profile-link" href="https://bsky.app" target="_blank"><i class="fas fa-cloud"></i> Bluesky</a>
+        <a class="profile-link" href="https://produccioncientifica.ucm.es/investigadores/678899/detalle" target="_blank"><i class="fas fa-university"></i> UCM</a>
+      </div>
+    </div>
+
+    <div class="hero-stats">
+      <div class="stat-card"><span class="stat-num">680+</span><span class="stat-label">Citas GS</span></div>
+      <div class="stat-card"><span class="stat-num">h=15</span><span class="stat-label">índice h</span></div>
+      <div class="stat-card"><span class="stat-num">42</span><span class="stat-label">Artículos</span></div>
+      <div class="stat-card"><span class="stat-num">16</span><span class="stat-label">Proyectos</span></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════ ABOUT ══════════════════ -->
+<section id="about">
+  <div class="section-inner">
+    <div class="section-header">
+      <p class="section-tag">Perfil académico</p>
+      <h2 class="section-title">Sobre mí</h2>
+    </div>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>
+          Soy Profesor Ayudante Doctor en el Departamento de Ciencias Políticas y de la Administración de la Universidad Complutense de Madrid. Mi investigación se centra en la política sanitaria y social comparada, la gobernanza multinivel y los factores explicativos del desarrollo del Estado de bienestar en España, América Latina y el Caribe.
+        </p>
+        <p>
+          Comencé mi formación académica en la Universidad de Puerto Rico (Mayagüez), donde obtuve la licenciatura en Ciencias Políticas con Magna Cum Laude. Posteriormente me trasladé a Madrid para cursar el Máster en Gobierno y Administración Pública y el doctorado, ambos en la UCM, obteniendo el título de Doctor en Ciencias Políticas con la calificación de Cum Laude en 2015.
+        </p>
+        <p>
+          Antes de incorporarme a la UCM, disfruté de 36 meses como investigador postdoctoral en el Reino Unido (University College London) y Noruega (Universidad de Agder), así como de una beca Juan de la Cierva Formación en el CSIC. He realizado estancias de investigación en la Universidad de Oxford, la Universidade Federal de Pernambuco, la Universidad de Lund y la Universidad de Bergen.
+        </p>
+        <p>
+          Actualmente soy Coordinador del Máster en Análisis Político (UCM), Co-Editor de la revista <em>Alternautas</em> y miembro del Consejo Asesor Editorial Internacional de <em>Social Policy &amp; Society</em>. Estoy acreditado como Profesor Titular por la ANECA (2024) y cuento con dos sexenios de investigación reconocidos.
+        </p>
+        <div class="research-tags">
+          <span class="tag">Política social comparada</span>
+          <span class="tag">Estado de bienestar</span>
+          <span class="tag">Gobernanza multinivel</span>
+          <span class="tag">Sistema Nacional de Salud</span>
+          <span class="tag">América Latina y el Caribe</span>
+          <span class="tag">España</span>
+          <span class="tag">Pobreza y desigualdad</span>
+          <span class="tag">Política sanitaria</span>
+        </div>
+      </div>
+
+      <div>
+        <div class="info-card">
+          <h4>Datos de contacto</h4>
+          <div class="info-item">
+            <i class="fas fa-envelope"></i>
+            <span><a href="mailto:gicruz@ucm.es">gicruz@ucm.es</a></span>
+          </div>
+          <div class="info-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>Facultad de CC. Políticas y Sociología, UCM, Madrid</span>
+          </div>
+          <div class="info-item">
+            <i class="fas fa-globe"></i>
+            <span><a href="https://www.cruz-martinez.com" target="_blank">www.cruz-martinez.com</a></span>
+          </div>
+          <div class="info-item">
+            <i class="fab fa-orcid"></i>
+            <span><a href="https://orcid.org/0000-0002-4583-2914" target="_blank">0000-0002-4583-2914</a></span>
+          </div>
+
+          <h4 style="margin-top:1.5rem">Acreditaciones ANECA</h4>
+          <div class="acred-badge"><i class="fas fa-certificate"></i> Profesor Titular (2024)</div><br/>
+          <div class="acred-badge" style="margin-top:0.4rem"><i class="fas fa-certificate"></i> Profesor Contratado Doctor (2019)</div>
+
+          <h4 style="margin-top:1.5rem">Evaluaciones</h4>
+          <div class="info-item">
+            <i class="fas fa-star"></i>
+            <span>2 sexenios de investigación (2012–2017; 2018–2023)</span>
+          </div>
+          <div class="info-item">
+            <i class="fas fa-star"></i>
+            <span>1 quinquenio de docencia (2012–2022)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════ PROJECTS ══════════════════ -->
+<section id="projects">
+  <div class="section-inner">
+    <div class="section-header">
+      <p class="section-tag">Investigación financiada</p>
+      <h2 class="section-title">Proyectos</h2>
+    </div>
+    <div class="projects-grid">
+
+      <div class="project-card">
+        <div class="project-funding">12.000 €</div>
+        <div class="project-years">2025–2026</div>
+        <div class="project-title">Diagnóstico de situación de los trabajadores y trabajadoras de los servicios sociales en España. Libro Blanco de Profesionales de Servicios Sociales</div>
+        <p class="project-meta"><i class="fas fa-building" style="color:var(--accent);margin-right:4px"></i> Ministerio de Derechos Sociales y Agenda 2030 / Fresno</p>
+        <span class="project-role ip">IP</span>
+        <p class="project-meta" style="margin-top:0.5rem">Con J. Hernández-Moreno</p>
+      </div>
+
+      <div class="project-card">
+        <div class="project-funding">18.235 €</div>
+        <div class="project-years">2025–2026</div>
+        <div class="project-title">Working Together in Europe Towards One Health Around the World (WISE CARE)</div>
+        <p class="project-meta"><i class="fas fa-building" style="color:var(--accent);margin-right:4px"></i> UNA Europa Seed Funding</p>
+        <span class="project-role">Investigador</span>
+        <p class="project-meta" style="margin-top:0.5rem">IP: Martijn Sijbom (Universiteit Leiden)</p>
+      </div>
+
+      <div class="project-card">
+        <div class="project-funding">9.200 €</div>
+        <div class="project-years">2024–2025</div>
+        <div class="project-title">V Informe del Observatorio Esclerosis Lateral Amiotrófica (ELA)</div>
+        <p class="project-meta"><i class="fas fa-building" style="color:var(--accent);margin-right:4px"></i> Fundación Luzón</p>
+        <span class="project-role ip">IP</span>
+        <p class="project-meta" style="margin-top:0.5rem">Con J. Hernández-Moreno</p>
+      </div>
+
+      <div class="project-card">
+        <div class="project-funding">6.173.427 €</div>
+        <div class="project-years">2022–2024</div>
+        <div class="project-title">Detección y movilización de personas elegibles para el Ingreso Mínimo Vital en situación de Non-Take Up</div>
+        <p class="project-meta"><i class="fas fa-building" style="color:var(--accent);margin-right:4px"></i> EU Next Generation &amp; Ministerio de Inclusión</p>
+        <span class="project-role">Comité Académico</span>
+        <p class="project-meta" style="margin-top:0.5rem">IP: B. C. Susias Rodado (EAPN)</p>
+      </div>
+
+      <div class="project-card">
+        <div class="project-funding">83.508 €</div>
+        <div class="project-years">2021</div>
+        <div class="project-title">Análisis en profundidad de la Garantía Infantil Europea: pobreza infantil y exclusión social en España</div>
+        <p class="project-meta"><i class="fas fa-building" style="color:var(--accent);margin-right:4px"></i> Comisión Europea &amp; UNICEF</p>
+        <span class="project-role">Investigador / Coordinación</span>
+        <p class="project-meta" style="margin-top:0.5rem">IP: F.J. Moreno Fuentes &amp; G. Rodríguez Cabrero</p>
+      </div>
+
+      <div class="project-card">
+        <div class="project-funding">106.000 €</div>
+        <div class="project-years">2020–2021</div>
+        <div class="project-title">MC COVID-19: Mecanismos de coordinación entre la política sanitaria y la atención institucionalizada a mayores en España y Europa</div>
+        <p class="project-meta"><i class="fas fa-building" style="color:var(--accent);margin-right:4px"></i> Consejo Superior de Investigaciones Científicas (CSIC)</p>
+        <span class="project-role">Investigador</span>
+        <p class="project-meta" style="margin-top:0.5rem">IPs: E. del Pino Matute &amp; F.J. Moreno Fuentes</p>
+      </div>
+
+      <div class="project-card">
+        <div class="project-funding">48.400 €</div>
+        <div class="project-years">2020–2023</div>
+        <div class="project-title">Mecanismos de interoperabilidad de la tarjeta sanitaria: gobernanza multinivel y TI en el Sistema Nacional de Salud (e-MINTS)</div>
+        <p class="project-meta"><i class="fas fa-building" style="color:var(--accent);margin-right:4px"></i> Ministerio de Ciencia, Innovación y Universidades</p>
+        <span class="project-role">Investigador</span>
+        <p class="project-meta" style="margin-top:0.5rem">IP: F.J. Moreno Fuentes</p>
+      </div>
+
+      <div class="project-card">
+        <div class="project-funding">50.000 €</div>
+        <div class="project-years">2018–2020</div>
+        <div class="project-title">Mecanismos de Transmisión en el Desarrollo del Estado de Bienestar Emergente en América Latina y el Caribe (Juan de la Cierva Formación)</div>
+        <p class="project-meta"><i class="fas fa-building" style="color:var(--accent);margin-right:4px"></i> Ministerio de Economía, Industria y Competitividad</p>
+        <span class="project-role ip">IP</span>
+      </div>
+
+      <div class="project-card">
+        <div class="project-funding">60.000 €</div>
+        <div class="project-years">2018–2020</div>
+        <div class="project-title">La Restructuración de la Gobernanza del Estado del Bienestar: determinantes políticos e implicaciones sobre la (des)mercantilización de riesgos (GOWPER)</div>
+        <p class="project-meta"><i class="fas fa-building" style="color:var(--accent);margin-right:4px"></i> Ministerio de Economía, Industria y Competitividad</p>
+        <span class="project-role">Investigador</span>
+        <p class="project-meta" style="margin-top:0.5rem">IP: E. del Pino (CSIC)</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════ PUBLICATIONS ══════════════════ -->
+<section id="publications">
+  <div class="section-inner">
+    <div class="section-header">
+      <p class="section-tag">Producción científica</p>
+      <h2 class="section-title">Publicaciones</h2>
+    </div>
+
+    <div class="pub-tabs">
+      <button class="pub-tab active" onclick="showPub('books',this)">Libros</button>
+      <button class="pub-tab" onclick="showPub('articles',this)">Artículos (selección)</button>
+      <button class="pub-tab" onclick="showPub('special',this)">Monográficos</button>
+      <button class="pub-tab" onclick="showPub('chapters',this)">Capítulos</button>
+    </div>
+
+    <!-- BOOKS -->
+    <div class="pub-panel active" id="pub-books">
+      <div class="pub-item">
+        <div class="pub-num">3 <span class="pub-book-badge">Routledge</span></div>
+        <div class="pub-ref">
+          <strong>Cruz-Martínez, G.</strong> (Ed.) (2019). <em>Welfare and Social Protection in Contemporary Latin America</em>. Routledge, London. pp. 288. ISBN 978-11-3860-011-9.
+          <div class="pub-journal">Routledge — ICEE 1153 (puesto 3 en editoriales extranjeras según SPI)</div>
+        </div>
+      </div>
+      <div class="pub-item">
+        <div class="pub-num">2 <span class="pub-book-badge">INAP</span></div>
+        <div class="pub-ref">
+          Moreno Fuentes, F.J., Perna, R., <strong>Cruz-Martínez, G.</strong> &amp; Menard, G. (2022). <em>Movilidad de pacientes en el Sistema Nacional de Salud: equilibrios políticos, institucionales y financieros</em>. INAP, Madrid. pp. 128. ISBN 978-84-7351-746-1.
+          <div class="pub-journal">INAP — ICEE 12 (puesto 94 en editoriales españolas según SPI)</div>
+        </div>
+      </div>
+      <div class="pub-item">
+        <div class="pub-num">1 <span class="pub-book-badge">Dykinson</span></div>
+        <div class="pub-ref">
+          <strong>Cruz-Martínez, G.</strong> (2017). <em>Produciendo Bienestar. Una Mirada desde las Comunidades Marginadas de Puerto Rico</em>. Editorial Dykinson, Madrid. pp. 145. ISBN 978-84-9148-378-6.
+          <div class="pub-journal">Dykinson — ICEE 456 (puesto 13 en editoriales españolas según SPI)</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ARTICLES (selection, most recent first) -->
+    <div class="pub-panel" id="pub-articles">
+      <div class="pub-item">
+        <div class="pub-num">42</div>
+        <div class="pub-ref">
+          Velázquez Leyer, R., Ramírez, V., <strong>Cruz-Martínez, G.</strong> &amp; Papadopoulos, T. (2025). Current trends, persistent challenges, and emerging opportunities of social policy implementation in Latin America and Southern Europe. <em>Journal of International and Comparative Social Policy</em>. DOI: 10.1017/ics.2025.10084
+          <div class="pub-journal">Q2 Sociology and Political Science – SJR 0.408</div>
+        </div>
+      </div>
+      <div class="pub-item">
+        <div class="pub-num">36</div>
+        <div class="pub-ref">
+          <strong>Cruz-Martínez, G.</strong> &amp; Hernández-Moreno, J. (2025). Dualization and Social Policies: A Conceptual and Analytical Framework. <em>Politics &amp; Policy</em>, 33(5). DOI: 10.1111/polp.70039
+          <div class="pub-journal">JCR-ESCI, IF 1.5, Q2 Sociology and Political Science – SJR 1.3</div>
+        </div>
+      </div>
+      <div class="pub-item">
+        <div class="pub-num">32</div>
+        <div class="pub-ref">
+          Perna, R., Hernández-Moreno, J. &amp; <strong>Cruz-Martínez, G.</strong> (2025). Reforming Long-Term Care Provision and Work in Post-Pandemic Times: Scope and Drivers of Policy Change in the Spanish Decentralised System. <em>Social Policy &amp; Administration</em>. DOI: 10.1111/spol.13117
+          <div class="pub-journal">JCR, Impact Factor 2.6, Q1 Sociology and Political Science – SJR 1.16</div>
+        </div>
+      </div>
+      <div class="pub-item">
+        <div class="pub-num">40</div>
+        <div class="pub-ref">
+          Hernández-Moreno, J. &amp; <strong>Cruz-Martínez, G.</strong> (2025). Sanidad y Servicios Sociales en el Estado Autonómico: Actores y Procesos de Adaptación (1975–2025). <em>Economía Industrial</em>, 437, pp. 33–44.
+          <div class="pub-journal">Q2 Dialnet Economía</div>
+        </div>
+      </div>
+      <div class="pub-item">
+        <div class="pub-num">37</div>
+        <div class="pub-ref">
+          Diniz Nogueira, L. &amp; <strong>Cruz-Martínez, G.</strong> (2025). Universal Basic Income from the 'Buen Vivir' Decolonial Perspective. <em>Alternautas</em>, 12(1): 32–60. DOI: 10.31273/dpt7nc35
+          <div class="pub-journal">Latindex</div>
+        </div>
+      </div>
+      <p style="color:var(--text-xlt);font-size:0.88rem;margin-top:1.5rem">
+        <i class="fas fa-info-circle" style="color:var(--accent)"></i>&nbsp;
+        Lista completa de 42 artículos disponible en <a href="https://produccioncientifica.ucm.es/investigadores/678899/detalle" target="_blank">Producción Científica UCM</a>, <a href="https://orcid.org/0000-0002-4583-2914" target="_blank">ORCID</a> y <a href="#contact">Google Scholar</a>.
+      </p>
+    </div>
+
+    <!-- SPECIAL ISSUES -->
+    <div class="pub-panel" id="pub-special">
+      <div class="pub-item">
+        <div class="pub-num">5</div>
+        <div class="pub-ref">
+          Hernández Agrelo, A., Hernández Corrochano, D., <strong>Cruz-Martínez, G.</strong> &amp; Velázquez Leyer, R. (2024). 'Clientelismo en la política y las políticas públicas', <em>Iberoforum</em>, 4(2).
+        </div>
+      </div>
+      <div class="pub-item">
+        <div class="pub-num">4</div>
+        <div class="pub-ref">
+          <strong>Cruz-Martínez, G.</strong>, Pellisery, S. &amp; Velazquez Leyer, R. (2023). 'Social Policy Responses and Institutional Reforms in the Pandemic', <em>Social Policy and Society</em>, 22(3).
+        </div>
+      </div>
+      <div class="pub-item">
+        <div class="pub-num">3</div>
+        <div class="pub-ref">
+          Díaz-Tendero, A. &amp; <strong>Cruz-Martínez, G.</strong> (2023). 'Políticas públicas y derechos humanos de las personas mayores: salud, seguridad económica y cuidados de largo plazo', <em>Política &amp; Sociedad</em>.
+        </div>
+      </div>
+      <div class="pub-item">
+        <div class="pub-num">2</div>
+        <div class="pub-ref">
+          <strong>Cruz-Martínez, G.</strong> &amp; Bernales-Baksai, P. (2022). 'Old and New challenges to welfare regimes: A global perspective', <em>International Journal of Sociology and Social Policy</em>, 42(1/2).
+          <div class="pub-journal">SCOPUS CiteScore 1.7, Q2 – SJR 0.301</div>
+        </div>
+      </div>
+      <div class="pub-item">
+        <div class="pub-num">1</div>
+        <div class="pub-ref">
+          <strong>Cruz-Martinez, G.</strong>, M. Fernandez, J. Ortiz &amp; P. Roman (2018). 'The Making of Caribbean not-so-natural disasters', <em>Alternautas</em>, Vol. 5, Issue 2.
+        </div>
+      </div>
+    </div>
+
+    <!-- CHAPTERS -->
+    <div class="pub-panel" id="pub-chapters">
+      <p style="color:var(--text-lt);font-size:0.93rem;line-height:1.75;">
+        He publicado capítulos de libro en editoriales de reconocido prestigio (Routledge, Palgrave Macmillan, Dykinson, entre otras). Para el listado completo actualizado de capítulos de libro, consulta mi perfil en
+        <a href="https://produccioncientifica.ucm.es/investigadores/678899/detalle" target="_blank">Producción Científica UCM</a> o en
+        <a href="https://orcid.org/0000-0002-4583-2914" target="_blank">ORCID</a>.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ══════════════════ SUPERVISION ══════════════════ -->
+<section id="supervision">
+  <div class="section-inner">
+    <div class="section-header">
+      <p class="section-tag">Formación académica</p>
+      <h2 class="section-title">Supervisión y dirección</h2>
+    </div>
+
+    <div class="supervision-grid">
+      <div class="supervision-stat">
+        <span class="num">4</span>
+        <span class="lbl">Tesis doctorales en curso</span>
+      </div>
+      <div class="supervision-stat">
+        <span class="num">15+</span>
+        <span class="lbl">TFM dirigidos</span>
+      </div>
+      <div class="supervision-stat">
+        <span class="num">7</span>
+        <span class="lbl">TFG dirigidos</span>
+      </div>
+      <div class="supervision-stat">
+        <span class="num">5</span>
+        <span class="lbl">Prácticas supervisadas</span>
+      </div>
+    </div>
+
+    <!-- AWARD CARD -->
+    <div class="award-card">
+      <div class="award-label"><i class="fas fa-trophy" style="color:var(--gold-lt);margin-right:0.4rem"></i>Premio Extraordinario de TFM</div>
+      <h3 class="award-title">Facultad de Ciencias Políticas y Sociología &mdash; Universidad Complutense de Madrid</h3>
+      <p class="award-desc">
+        Concedido a <strong>Santiago Carranza-Vélez Chirinos</strong>, Máster en Análisis Político, promoción 2024–25,
+        por el trabajo titulado <strong>«Ni autoritarismo ni democracia consolidada: El Perú (2016–2024) como una democracia defectuosa dinámica y multicausal»</strong>,
+        dirigido por Gibrán Cruz-Martínez. El trabajo obtuvo la calificación de 9 (Sobresaliente).
+      </p>
+    </div>
+
+    <!-- TFM RECENT LIST -->
+    <div class="supervision-info">
+      <h3>Selección de TFM dirigidos (Máster en Análisis Político, UCM)</h3>
+      <p>
+        Entre los trabajos más recientes dirigidos destacan: la traducción institucional del Buen Vivir en Ecuador (2025, 9 Sobresaliente); análisis de la democracia defectuosa en Perú 2016–2024 (2025, 9 Sobresaliente — Premio Extraordinario UCM); el rol de los medios en el <em>lawfare</em> en España (2024, 8 Notable); el ELN y la paz en Colombia bajo Petro (2024, 9,5 Sobresaliente); y el análisis de la derecha radical en el Parlamento Europeo (2024, 9 Sobresaliente), entre otros.
+      </p>
+      <div class="research-interests">
+        <span class="tag">Democracia y regímenes políticos</span>
+        <span class="tag">América Latina</span>
+        <span class="tag">Estado de bienestar</span>
+        <span class="tag">Política comparada</span>
+        <span class="tag">Medios y política</span>
+        <span class="tag">Análisis político cuantitativo</span>
+      </div>
+    </div>
+
+    <div class="supervision-info" style="margin-top:1.5rem; background:var(--bg); border-color:var(--border)">
+      <h3>Interés en supervisión</h3>
+      <p>
+        Estoy abierto a supervisar tesis doctorales y TFM en el ámbito de la política social comparada, el Estado de bienestar, la gobernanza multinivel, la política sanitaria, la pobreza y la desigualdad social, con especial énfasis en Europa, España y América Latina. Si tienes interés en trabajar conmigo, escríbeme a <a href="mailto:gicruz@ucm.es">gicruz@ucm.es</a> con una breve propuesta.
+      </p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════ TEACHING ══════════════════ -->
+<section id="teaching">
+  <div class="section-inner">
+    <div class="section-header">
+      <p class="section-tag">Actividad docente</p>
+      <h2 class="section-title">Docencia</h2>
+    </div>
+    <p style="color:var(--text-lt);margin-bottom:2rem;font-size:0.93rem">Más de <strong>1.000 horas</strong> de docencia en instituciones de España, Noruega, Reino Unido y Brasil. Actualmente Coordinador del <strong>Máster en Análisis Político</strong> (UCM).</p>
+
+    <div class="teaching-list">
+      <div class="teaching-item">
+        <span class="teaching-year">2021–Presente</span>
+        <span class="teaching-course"><em>Sistemas Políticos y Gobernanza</em> — Máster en Análisis Político, UCM</span>
+      </div>
+      <div class="teaching-item">
+        <span class="teaching-year">2021–Presente</span>
+        <span class="teaching-course"><em>Política Comparada</em> — Grado en Ciencias Políticas / Relaciones Internacionales, UCM</span>
+      </div>
+      <div class="teaching-item">
+        <span class="teaching-year">2022–Presente</span>
+        <span class="teaching-course"><em>Introduction to Politics</em> — Bachelor in European Studies (UNA Europa), UCM — docencia en inglés</span>
+      </div>
+      <div class="teaching-item">
+        <span class="teaching-year">2021</span>
+        <span class="teaching-course"><em>Fundamentos de la Ciencia Política y de la Administración Pública</em> — Grado en Trabajo Social, UCM</span>
+      </div>
+      <div class="teaching-item">
+        <span class="teaching-year">2019</span>
+        <span class="teaching-course"><em>Introduction to Political Sciences</em> — Bachelor in International Relations and Business Administration, IE University</span>
+      </div>
+      <div class="teaching-item">
+        <span class="teaching-year">2019</span>
+        <span class="teaching-course"><em>Desarrollo de los Estados de Bienestar Emergentes en América Latina</em> — Posgrado en Trabajo Social, Universidade Federal de Pernambuco, Brasil</span>
+      </div>
+      <div class="teaching-item">
+        <span class="teaching-year">2016–2017</span>
+        <span class="teaching-course"><em>Introducción a los Estudios Latinoamericanos: Historia, Desarrollo y Sociedad</em> — Bachelor Development Studies, Universidad de Agder, Noruega</span>
+      </div>
+      <div class="teaching-item">
+        <span class="teaching-year">2016</span>
+        <span class="teaching-course"><em>Economía Latinoamericana: más allá del neoliberalismo</em> — módulo de maestría, Instituto de las Américas, University College London</span>
+      </div>
+      <div class="teaching-item">
+        <span class="teaching-year">2012–2014</span>
+        <span class="teaching-course"><em>Política Comparada / Sistemas Políticos y Gobernabilidad</em> — Licenciatura y Máster, UCM (Colaborador Docente)</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════ TALKS ══════════════════ -->
+<section id="talks">
+  <div class="section-inner">
+    <div class="section-header">
+      <p class="section-tag">Visibilidad y difusión</p>
+      <h2 class="section-title">Conferencias &amp; Participaciones</h2>
+    </div>
+    <div class="talks-list">
+
+      <div class="talk-item">
+        <span class="talk-year">2024</span>
+        <div>
+          <div class="talk-title">Cuidados de larga duración y trabajadores «esenciales» en tiempos post-pandémicos: dinámicas de cambio en el sistema español descentralizado</div>
+          <div class="talk-venue">Congreso AECPA, Universidad de Burgos — jul. 2024 (con J. Hernández-Moreno y R. Perna)</div>
+        </div>
+      </div>
+
+      <div class="talk-item">
+        <span class="talk-year">2024</span>
+        <div>
+          <div class="talk-title">La Democracia Deliberativa en el Aula: Manual de buenas prácticas para una correcta implementación en Ciencia Política</div>
+          <div class="talk-venue">Congreso AECPA, Universidad de Burgos — jul. 2024 (con L. Ferreiro)</div>
+        </div>
+      </div>
+
+      <div class="talk-item">
+        <span class="talk-year">2024</span>
+        <div>
+          <div class="talk-title">La renta básica universal desde la mirada decolonial del Buen Vivir</div>
+          <div class="talk-venue">Congreso Internacional de Estudios del Desarrollo, UCM, Madrid — may. 2024</div>
+        </div>
+      </div>
+
+      <div class="talk-item">
+        <span class="talk-year">2021</span>
+        <div>
+          <div class="talk-title">Recent Transformations and Challenges to Welfare Systems in the Global South</div>
+          <div class="talk-venue">ECPR Joint Sessions, Virtual — may. 2021</div>
+        </div>
+      </div>
+
+      <div class="talk-item">
+        <span class="talk-year">2019</span>
+        <div>
+          <div class="talk-title">Actores Alternativos en un Régimen de Bienestar Intranacional</div>
+          <div class="talk-venue">XIV Congreso AECPA, Universidad de Salamanca — jul. 2019</div>
+        </div>
+      </div>
+
+      <div class="talk-item">
+        <span class="talk-year">2018</span>
+        <div>
+          <div class="talk-title">Explaining Welfare Expansion in Latin America &amp; the Caribbean: Political, Economic and Social Factors in the Globalisation Era</div>
+          <div class="talk-venue">International Conference on Global Dynamics of Social Policy, University of Bremen — oct. 2018</div>
+        </div>
+      </div>
+
+      <div class="talk-item">
+        <span class="talk-year">2018</span>
+        <div>
+          <div class="talk-title">Targeting the Targeted: Migrants and Social Pensions in Latin America and the Caribbean</div>
+          <div class="talk-venue">ECPR General Conference, University of Hamburg — ago. 2018</div>
+        </div>
+      </div>
+
+      <div class="talk-item">
+        <span class="talk-year">2018</span>
+        <div>
+          <div class="talk-title">End poverty in all its forms everywhere: Really? How?</div>
+          <div class="talk-venue">SDG Conference Bergen, University of Bergen, Noruega — feb. 2018</div>
+        </div>
+      </div>
+
+    </div>
+    <p style="color:var(--text-xlt);font-size:0.85rem;margin-top:1.5rem;text-align:center">
+      Selección de más de 35 ponencias en congresos nacionales e internacionales.
+    </p>
+  </div>
+</section>
+
+
+<!-- ══════════════════ CONTACT ══════════════════ -->
+<section id="contact">
+  <div class="section-inner">
+    <div class="section-header">
+      <p class="section-tag">Contacto</p>
+      <h2 class="section-title">Ponerse en contacto</h2>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-text">
+        <p>
+          Si estás interesado en colaborar en proyectos de investigación, invitarme a impartir una conferencia o supervisar una tesis doctoral o TFM, no dudes en escribirme a <a href="mailto:gicruz@ucm.es">gicruz@ucm.es</a>. También puedes encontrarme en mis perfiles académicos.
+        </p>
+        <p style="margin-top:1.25rem">
+          <strong style="color:rgba(255,255,255,0.85)">Gibrán Cruz-Martínez</strong><br>
+          Departamento de Ciencias Políticas y de la Administración<br>
+          Facultad de Ciencias Políticas y Sociología<br>
+          Universidad Complutense de Madrid<br>
+          28223 Pozuelo de Alarcón, Madrid, España
+        </p>
+      </div>
+      <div class="contact-links">
+        <a class="contact-link" href="mailto:gicruz@ucm.es">
+          <i class="fas fa-envelope"></i>
+          <div>
+            <div class="contact-link-label">Email institucional</div>
+            <div class="contact-link-text">gicruz@ucm.es</div>
+          </div>
+        </a>
+        <a class="contact-link" href="https://scholar.google.es" target="_blank">
+          <i class="fab fa-google"></i>
+          <div>
+            <div class="contact-link-label">Google Scholar</div>
+            <div class="contact-link-text">Perfil de citas y publicaciones</div>
+          </div>
+        </a>
+        <a class="contact-link" href="https://orcid.org/0000-0002-4583-2914" target="_blank">
+          <i class="fab fa-orcid"></i>
+          <div>
+            <div class="contact-link-label">ORCID</div>
+            <div class="contact-link-text">0000-0002-4583-2914</div>
+          </div>
+        </a>
+        <a class="contact-link" href="https://www.researchgate.net/profile/Gibran-Cruz-Martinez" target="_blank">
+          <i class="fab fa-researchgate"></i>
+          <div>
+            <div class="contact-link-label">ResearchGate</div>
+            <div class="contact-link-text">Perfil y artículos</div>
+          </div>
+        </a>
+        <a class="contact-link" href="https://www.linkedin.com/in/gibran-cruz-martinez/" target="_blank">
+          <i class="fab fa-linkedin"></i>
+          <div>
+            <div class="contact-link-label">LinkedIn</div>
+            <div class="contact-link-text">Perfil profesional</div>
+          </div>
+        </a>
+        <a class="contact-link" href="https://bsky.app" target="_blank">
+          <i class="fas fa-cloud"></i>
+          <div>
+            <div class="contact-link-label">Bluesky</div>
+            <div class="contact-link-text">@gibrancruzmartinez</div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════ FOOTER ══════════════════ -->
+<footer>
+  <p>© 2025 Gibrán Cruz-Martínez &mdash; <a href="https://www.ucm.es" target="_blank">Universidad Complutense de Madrid</a></p>
+</footer>
+
+
+<!-- ══════════════════ SCRIPTS ══════════════════ -->
+<script>
+  // Publication tabs
+  function showPub(id, btn) {
+    document.querySelectorAll('.pub-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.pub-tab').forEach(b => b.classList.remove('active'));
+    document.getElementById('pub-' + id).classList.add('active');
+    btn.classList.add('active');
+  }
+
+  // Active nav link on scroll
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navLinks.forEach(link => {
+          link.classList.toggle('active', link.getAttribute('href') === '#' + entry.target.id);
+        });
+      }
+    });
+  }, { threshold: 0.35 });
+  sections.forEach(s => observer.observe(s));
+
+  // Close mobile menu on link click
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+      document.querySelector('.nav-links').classList.remove('open');
+    });
+  });
+</script>
+</body>
+</html>
